@@ -1,2 +1,5 @@
 efficient-apriori==2.0.6
+numpy==2.3.5
+pandas==2.2.3
+matplotlib==3.11.2
 reportlab>=4.0,<5
