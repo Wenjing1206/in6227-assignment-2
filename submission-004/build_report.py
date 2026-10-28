@@ -16,7 +16,7 @@ from reportlab.pdfgen import canvas
 
 ROOT = Path(__file__).resolve().parent
 DATA = json.loads((ROOT / "data/results-original.json").read_text(encoding="utf-8"))
-OUTPUT = ROOT / "output/Wenjing_Tian_IN6227_Assignment_2_GitHub.pdf"
+OUTPUT = ROOT / "output/Wenjing_Tian_IN6227_Assignment_2_Formatted.pdf"
 OUTPUT.parent.mkdir(parents=True, exist_ok=True)
 W, H = landscape(A4)
 
@@ -148,7 +148,13 @@ def plot_panel(x, title, rows, x_key, x_min, x_max, boundary, y_min, y_max,
         c.line(px0, y, px1, y)
         c.setFont("DejaVu", 6.3)
         c.setFillColor(GRAY)
-        c.drawRightString(px0 - 5, y - 2.5, f"10^{power}")
+        # 中文：对数刻度的指数使用真正的上标。
+        exp_text = str(power)
+        exp_width = pdfmetrics.stringWidth(exp_text, "DejaVu", 4.8)
+        c.setFont("DejaVu", 6.3)
+        c.drawRightString(px0 - 5 - exp_width, y - 2.5, "10")
+        c.setFont("DejaVu", 4.8)
+        c.drawRightString(px0 - 5, y + 0.4, exp_text)
     for value, tick_label in xticks:
         tx = px(value)
         c.setStrokeColor(GRID)
@@ -212,8 +218,8 @@ para(
     "Let <b>n</b> be the number of transactions and <b>d</b> the number of distinct items observed. "
     "Each item is absent, in antecedent A, or in consequent B. Every disjoint A → B maps to one "
     "assignment, so enumeration is complete and unique. Excluding empty sides gives "
-    "<b>R(d)=3<super>d</super>-2<super>d+1</super>+1</b> rules. Scanning n transactions per rule gives "
-    "<b>O(n3<super>d</super>)</b> with constant-time word-size masks: <b>O(n)</b> for fixed d and "
+    "<b>R(d) = 3<super>d</super> − 2<super>d+1</super> + 1</b> rules. Scanning n transactions per rule gives "
+    "<b>O(n × 3<super>d</super>)</b> with constant-time word-size masks: <b>O(n)</b> for fixed d and "
     "<b>O(3<super>d</super>)</b> for fixed n.",
     28, 511, 381, size=8.0, leading=11.4,
 )
