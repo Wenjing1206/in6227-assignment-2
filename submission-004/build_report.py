@@ -16,7 +16,7 @@ from reportlab.pdfgen import canvas
 
 ROOT = Path(__file__).resolve().parent
 DATA = json.loads((ROOT / "data/results-original.json").read_text(encoding="utf-8"))
-OUTPUT = ROOT / "output/Wenjing_Tian_IN6227_Assignment_2_Formatted.pdf"
+OUTPUT = ROOT / "output/Wenjing_Tian_IN6227_Assignment_2_Math.pdf"
 OUTPUT.parent.mkdir(parents=True, exist_ok=True)
 W, H = landscape(A4)
 
@@ -218,9 +218,9 @@ para(
     "Let <b>n</b> be the number of transactions and <b>d</b> the number of distinct items observed. "
     "Each item is absent, in antecedent A, or in consequent B. Every disjoint A → B maps to one "
     "assignment, so enumeration is complete and unique. Excluding empty sides gives "
-    "<b>R(d) = 3<super>d</super> − 2<super>d+1</super> + 1</b> rules. Scanning n transactions per rule gives "
-    "<b>O(n × 3<super>d</super>)</b> with constant-time word-size masks: <b>O(n)</b> for fixed d and "
-    "<b>O(3<super>d</super>)</b> for fixed n.",
+    "<font name='Times-Italic'>R</font>(<font name='Times-Italic'>d</font>) = 3<super><font name='Times-Italic'>d</font></super> − 2<super><font name='Times-Italic'>d</font>+1</super> + 1 rules. Scanning n transactions per rule gives "
+    "<font name='Times-Italic'>O</font>(<font name='Times-Italic'>n</font> × 3<super><font name='Times-Italic'>d</font></super>) with constant-time word-size masks: <font name='Times-Italic'>O</font>(<font name='Times-Italic'>n</font>) for fixed d and "
+    "<font name='Times-Italic'>O</font>(3<super><font name='Times-Italic'>d</font></super>) for fixed n.",
     28, 511, 381, size=8.0, leading=11.4,
 )
 label("STEP 2 | CONTROLLED EXPERIMENT", 433, 522, 7.8, True, BLUE)
